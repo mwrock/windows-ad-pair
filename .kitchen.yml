@@ -1,0 +1,34 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: nodes
+
+platforms:
+- name: windows-2012R2
+  driver_config:
+    box: mwrock/Windows2012R2Full
+    communicator: winrm
+    vm_hostname: false
+  transport:
+    name: winrm
+
+suites:
+  - name: primary
+    run_list:
+      - recipe[windows_ad_pair::primary]
+    attributes:
+      windows_ad_pair:
+        fqdn: kitchen.local
+        options:
+          NoRebootOnCompletion: 
+
+  - name: backup
+    run_list:
+      - recipe[windows_ad_pair::backup]
+    attributes:
+      windows_ad_pair:
+        fqdn: kitchen.local
+        options:
+          NoRebootOnCompletion: 
