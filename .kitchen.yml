@@ -30,5 +30,6 @@ suites:
     attributes:
       windows_ad_pair:
         fqdn: kitchen.local
+        administrator_password: vagrant
         options:
           NoRebootOnCompletion: 

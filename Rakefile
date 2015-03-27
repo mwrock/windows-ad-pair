@@ -13,7 +13,6 @@ namespace "windowd_ad_pair" do
       system("kitchen exec primary-windows-2012R2 -c 'Restart-Computer -Force'") or throw "failed to restart primary AD controller"
       system('kitchen converge backup-windows-2012R2') or throw "failed to converge secondary AD controller"
       system("kitchen exec backup-windows-2012R2 -c 'Restart-Computer -Force'") or throw "failed to restart secondary AD controller"
-      system('kitchen setup primary-windows-2012R2')
       system('kitchen verify primary-windows-2012R2') or throw "failed to verify primary AD controller"      
       system('kitchen verify backup-windows-2012R2') or throw "failed to verify secondary AD controller"
     ensure

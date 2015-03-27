@@ -6,7 +6,7 @@ domain  = node["windows_ad_pair"]["fqdn"]
 
 windows_ad_domain domain do
   type type
-  safe_mode_pass node['windows_ad_pair']['administrator_password']
+  safe_mode_pass node['windows_ad_pair']['safe_mode_pass']
   if type == "replica"
     domain_user "#{node['windows_ad_pair']['administrator_user']}@#{domain}"
     domain_pass node['windows_ad_pair']['administrator_password']

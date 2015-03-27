@@ -1,2 +1,2 @@
 default["windows_ad_pair"]["administrator_user"] = "administrator"
-default["windows_ad_pair"]["administrator_password"] = "Pass@word1"
+default["windows_ad_pair"]["safe_mode_pass"] = "Pass@word1"
