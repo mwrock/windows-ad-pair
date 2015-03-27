@@ -1,13 +1,15 @@
 primary = search_for_nodes("run_list:*windows_ad_pair??primary*")
 primary_ip = primary[0]['ipaddress']
 
-powershell_script 'setting primary dns server to primary ad' do
-  code <<-EOS
-    Get-NetAdapter | Set-DnsClientServerAddress -ServerAddresses '#{primary_ip}'
-  EOS
+if primary_ip != "127.0.0.1"
+  powershell_script 'setting primary dns server to primary ad' do
+    code <<-EOS
+      Get-NetAdapter | Set-DnsClientServerAddress -ServerAddresses '#{primary_ip}'
+    EOS
 
-  guard_interpreter :powershell_script
-  not_if "(Get-NetAdapter | Get-DnsClientServerAddress -AddressFamily IPv4).ServerAddresseses -contains '#{primary_ip}'"
+    guard_interpreter :powershell_script
+    not_if "(Get-NetAdapter | Get-DnsClientServerAddress -AddressFamily IPv4).ServerAddresseses -contains '#{primary_ip}'"
+  end
 end
 
 node.default['windows_ad_pair']['domain_type'] = 'replica'
