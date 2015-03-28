@@ -16,6 +16,9 @@ platforms:
 
 suites:
   - name: primary
+    driver:
+      network:
+        - ["private_network", { type: "dhcp" }]
     run_list:
       - recipe[windows_ad_pair::primary]
     attributes:
@@ -25,6 +28,9 @@ suites:
           NoRebootOnCompletion: 
 
   - name: backup
+    driver:
+      network:
+        - ["private_network", { type: "dhcp" }]
     run_list:
       - recipe[windows_ad_pair::backup]
     attributes:
