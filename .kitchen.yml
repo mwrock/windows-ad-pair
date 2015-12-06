@@ -9,10 +9,6 @@ platforms:
 - name: windows-2012R2
   driver_config:
     box: mwrock/Windows2012R2Full
-    communicator: winrm
-    vm_hostname: false
-  transport:
-    name: winrm
 
 suites:
   - name: primary
