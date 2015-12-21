@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 group :development do
+  gem "chef"
   gem "rake"
   gem "berkshelf"
   gem "kitchen-nodes"
